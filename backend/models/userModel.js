@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a password'],
     },
+    cart: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 },
     {
         timeStamps: true

@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const expressAsyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
+const Product = require('../models/productModel')
+const { findById } = require('../models/userModel')
 
 // @desc     register user
 // @route    POST /api/users
@@ -27,7 +29,8 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        cart: []
     })
 
     if (user) {
@@ -35,6 +38,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            cart: user.cart,
             token: generateToken(user._id)
         })
     } else {
@@ -56,6 +60,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            cart: user.cart,
             token: generateToken(user._id)
         })
     } else {
@@ -68,13 +73,77 @@ const loginUser = expressAsyncHandler(async (req, res) => {
 // @route    GET /api/users/me
 // @acess    Private
 const getMe = expressAsyncHandler(async (req, res) => {
-    const { _id, name, email } = await User.findById(req.user.id)
+    const { _id, name, email, cart } = await User.findById(req.user.id)
 
     res.status(200).json({
         id: _id,
         name,
-        email
+        email,
+        cart
     })
+})
+
+// @desc     add to user cart
+// @route    POST /api/users/add/:id
+// @acess    Private
+const addToCart = expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id)
+
+    if (!product) {
+        res.status(400)
+        throw new Error('Product not found')
+    }
+
+    const user = await User.findById(req.user.id)
+
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    const alreadyAdded = user.cart.find(productId => productId == product.id)
+    if (!alreadyAdded) {
+        await User.updateOne(user, {
+            $set:
+            {
+                cart: [...user.cart, product]
+            }
+        })
+    }
+
+    const updatedUser = await User.findById(req.user.id)
+    res.status(200).json(updatedUser)
+})
+
+// @desc     remove from user cart
+// @route    POST /api/users/remove/:id
+// @acess    Private
+const removeFromCart = expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id)
+
+    if (!product) {
+        res.status(400)
+        throw new Error('Product not found')
+    }
+
+    const user = await User.findById(req.user.id)
+
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    const newCart = user.cart.filter(productId => productId != product.id)
+
+    await User.updateOne(user, {
+        $set:
+        {
+            cart: newCart
+        }
+    })
+
+    const updatedUser = await User.findById(req.user.id)
+    res.status(200).json(updatedUser)
 })
 
 const generateToken = (id) => {
@@ -86,5 +155,7 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    addToCart,
+    removeFromCart
 }
