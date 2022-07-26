@@ -47,7 +47,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     }
 })
 
-// @desc     Authenticate a user
+// @desc     login a user
 // @route    POST /api/users/login
 // @acess    Public
 const loginUser = expressAsyncHandler(async (req, res) => {
@@ -73,14 +73,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
 // @route    GET /api/users/me
 // @acess    Private
 const getMe = expressAsyncHandler(async (req, res) => {
-    const { _id, name, email, cart } = await User.findById(req.user.id)
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-        cart
-    })
+    res.status(200).json(req.user)
 })
 
 // @desc     add to user cart
@@ -94,7 +87,7 @@ const addToCart = expressAsyncHandler(async (req, res) => {
         throw new Error('Product not found')
     }
 
-    const user = await User.findById(req.user.id)
+    const user = req.user
 
     if (!user) {
         res.status(401)
@@ -102,7 +95,10 @@ const addToCart = expressAsyncHandler(async (req, res) => {
     }
 
     const alreadyAdded = user.cart.find(productId => productId == product.id)
-    if (!alreadyAdded) {
+    if (alreadyAdded) {
+        res.status(400)
+        throw new Error('Item already in cart')
+    } else {
         await User.updateOne(user, {
             $set:
             {
@@ -111,8 +107,7 @@ const addToCart = expressAsyncHandler(async (req, res) => {
         })
     }
 
-    const updatedUser = await User.findById(req.user.id)
-    res.status(200).json(updatedUser)
+    res.status(200).json(await User.findById(req.user.id))
 })
 
 // @desc     remove from user cart
@@ -126,7 +121,7 @@ const removeFromCart = expressAsyncHandler(async (req, res) => {
         throw new Error('Product not found')
     }
 
-    const user = await User.findById(req.user.id)
+    const user = req.user
 
     if (!user) {
         res.status(401)
@@ -142,8 +137,7 @@ const removeFromCart = expressAsyncHandler(async (req, res) => {
         }
     })
 
-    const updatedUser = await User.findById(req.user.id)
-    res.status(200).json(updatedUser)
+    res.status(200).json(await User.findById(req.user.id))
 })
 
 const generateToken = (id) => {

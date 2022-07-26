@@ -1,7 +1,7 @@
 const expressAsyncHandler = require("express-async-handler")
 const Product = require('../models/productModel')
 
-// @desc     get products
+// @desc     get all products
 // @route    GET /api/products
 // @acess    Public
 const getAllProducts = expressAsyncHandler(async (req, res) => {
@@ -9,15 +9,19 @@ const getAllProducts = expressAsyncHandler(async (req, res) => {
     res.status(200).json(products)
 })
 
-// @desc     get products
+// @desc     get product
 // @route    GET /api/products/:id
 // @acess    Public
 const getProduct = expressAsyncHandler(async (req, res) => {
     const products = await Product.findById(req.params.id)
+    if (!products) {
+        res.status(400)
+        throw new Error('Product does not exist')
+    }
     res.status(200).json(products)
 })
 
-// @desc     create products
+// @desc     create product
 // @route    POST /api/products
 // @acess    Public
 const createProducts = expressAsyncHandler(async (req, res) => {
@@ -37,7 +41,7 @@ const createProducts = expressAsyncHandler(async (req, res) => {
     res.status(200).json(product)
 })
 
-// @desc     update products
+// @desc     update product
 // @route    PUT /api/products/:id
 // @acess    Public
 const updateProducts = expressAsyncHandler(async (req, res) => {
@@ -53,7 +57,7 @@ const updateProducts = expressAsyncHandler(async (req, res) => {
     res.status(200).json(updatedProduct)
 })
 
-// @desc     delete products
+// @desc     delete product
 // @route    DELETE /api/products/:id
 // @acess    Public
 const deleteProducts = expressAsyncHandler(async (req, res) => {
