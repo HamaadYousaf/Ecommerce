@@ -1,14 +1,40 @@
 import { FaUser, FaShoppingCart } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import {logout, reset} from '../features/auth/authSlice'
 
 export default function Header() {
-  return (
+	const {user} = useSelector((state) => state.auth)
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	function handleLogout(){
+		dispatch(logout())
+		dispatch(reset())
+		navigate('/')
+	}
+
+	return (
     <header className='header'>
       <div className='user'>
-				<Link to='/login'>
-					<FaUser style={{color: "black", fontSize: 25}}/>
-				</Link>
-				<h1>Hamaad Yousaf</h1>
+				{user ? (
+					<>
+						<FaUser style={{color: "black", fontSize: 25}}/>
+						<h1>{user.name} | </h1>
+						<button onClick={handleLogout}>
+							Logout
+						</button>
+					</>
+				) : (
+					<>
+						<Link to='/login'>
+							<FaUser style={{color: "black", fontSize: 25}}/>
+						</Link>
+						<Link to='/login' style={{textDecoration: "none"}}>
+							<h1>Login</h1>
+						</Link>
+					</>
+				)}
       </div>
 			<div>
 				<Link to='/cart'>
@@ -16,5 +42,5 @@ export default function Header() {
 				</Link>
 			</div>
     </header>
-  )
+	)
 }

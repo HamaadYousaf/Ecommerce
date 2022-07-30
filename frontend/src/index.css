@@ -26,15 +26,28 @@ a{
   display: flex;
   align-items: center;
 }
+
 .user h1{
   font-size: 18px;
   padding-left: 10px;
+  color: #333333;
+}
+
+.user button{
+  padding: 0;
+  font-size: 16px;
+  margin-left: 5px;
+  border: none;
+  background-color: #FDFDFD;
+  color: #333333;
+  cursor: pointer;
 }
 
 .register{
   width: 80vw;
   padding-left: 20vw;
 }
+
 .register p{
   display: flex;
   justify-content:center;
@@ -43,6 +56,7 @@ a{
   color: black;
   border-bottom: none;
 }
+
 .register h6{
   text-align: right;
   font-size: 16px;
@@ -60,21 +74,23 @@ a{
   padding-bottom: 2.8vh;
 }
 
-
 .form{
   padding-top: 20px;
 }
+
 .form div{
   display: flex;
   justify-content:center;
   padding-block: 13px;
 }
+
 .form input{
   width: 400px;
   height: 30px;
   padding-left: 5px;
   border: 1px solid black;
 }
+
 .form button{
   display: flex;
   justify-content:center;
@@ -90,6 +106,134 @@ a{
   border: none;
   cursor: pointer;
 }
+
 .form button:hover{
   background: #666666;
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000 transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.main{
+  width: 90vw;
+  padding-left: 10vw;
+}
+
+.title{
+  font-size: 5vw;
+  font-weight: 500;
+  color: #333333;
+  padding-top: 5vh;
+  padding-bottom: 4vh;
+}
+
+.main h3{
+  font-size: 1.8vw;
+  padding-bottom: 4vh;
+}
+
+.products{
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 38vw 38vw;
+  grid-template-rows: repeat(3, 16vw);
+  row-gap: 5vh;
+  padding-bottom: 50px;
+}
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EEEEEE;
+  border-radius: 2.5vw;
+}
+
+.image-container{
+  background-color: white;
+  border-radius: 2.5vw;
+  height: 13.5vw;
+  width: 13.5vw;
+  margin-left: 1vw;
+  align-items: center;
+  text-align: center;
+}
+
+.content{
+  width: 22vw;
+  height: 13.5vw;
+  margin-right: 0.5vw;
+}
+
+.name {
+  font-size: 1.8vw;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 1.2vw;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.content h2{
+  font-size: 1.4vw;
+  padding-top: 0.8vw;
+}
+.content p{
+  font-size: 1vw;
+  padding-top: 0.3vw;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-top: 1.5vw;
+}
+
+.buy-btn{
+  font-size: 1.2vw;
+  width: 9.5vw;
+  height: 3vw;
+  background: #FF2C2C;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buy-btn:active{
+  background: #ff6969d4;
 }
