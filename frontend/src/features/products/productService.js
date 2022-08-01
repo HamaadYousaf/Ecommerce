@@ -8,7 +8,7 @@ const getProducts = async () => {
 }
 
 const productService = {
-    getProducts
+    getProducts,
 }
 
 export default productService

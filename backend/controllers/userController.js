@@ -95,10 +95,7 @@ const addToCart = expressAsyncHandler(async (req, res) => {
     }
 
     const alreadyAdded = user.cart.find(productId => productId == product.id)
-    if (alreadyAdded) {
-        res.status(400)
-        throw new Error('Item already in cart')
-    } else {
+    if (!alreadyAdded) {
         await User.updateOne(user, {
             $set:
             {
@@ -106,8 +103,16 @@ const addToCart = expressAsyncHandler(async (req, res) => {
             }
         })
     }
+    const updatedUser = await User.findById(req.user.id)
 
-    res.status(200).json(await User.findById(req.user.id))
+    res.status(200)
+    res.json({
+        _id: updatedUser.id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        cart: updatedUser.cart,
+        token: generateToken(user._id)
+    })
 })
 
 // @desc     remove from user cart
@@ -137,7 +142,27 @@ const removeFromCart = expressAsyncHandler(async (req, res) => {
         }
     })
 
-    res.status(200).json(await User.findById(req.user.id))
+    const updatedUser = await User.findById(req.user.id)
+    res.status(200)
+    res.json({
+        _id: updatedUser.id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        cart: updatedUser.cart,
+        token: generateToken(user._id)
+    })
+})
+
+// @desc     show user cart
+// @route    GET /api/users/cart
+// @acess    Private
+const showCart = expressAsyncHandler(async (req, res) => {
+    let products = []
+    for (let i = 0; i < req.user.cart.length; i++) {
+        let item = await Product.findById(req.user.cart[i])
+        products.push(item)
+    }
+    res.status(200).json(products)
 })
 
 const generateToken = (id) => {
@@ -150,6 +175,7 @@ module.exports = {
     registerUser,
     loginUser,
     getMe,
+    showCart,
     addToCart,
     removeFromCart
 }

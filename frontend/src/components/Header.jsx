@@ -36,8 +36,19 @@ export default function Header() {
 					</>
 				)}
       </div>
-			<div>
-				<Link to='/cart'>
+			<div className='cart'>
+				{user && 
+					<Link to='/cart' style={{textDecoration: "none"}}>
+						<div className='qty-container'>
+							{user.cart ? (
+								<h1 className='qty'>{user.cart.length}</h1>
+							): (
+								<h1 className='qty'>0</h1>
+							)}
+						</div>
+					</Link>
+				}
+				<Link to={user ? "/cart" : "/login"}>
 					<FaShoppingCart style={{color: "black", fontSize: 25}}/>
 				</Link>
 			</div>

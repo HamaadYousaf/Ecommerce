@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { applyPatches } from 'immer'
 
 const API_URL = '/api/users/'
 
@@ -27,10 +26,43 @@ const logout = () => {
     localStorage.removeItem('user')
 }
 
+const addToCart = async (productId, token, user) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.post(API_URL + "add/" + productId, user, config)
+    return response.data
+}
+
+const removeCart = async (productId, token, user) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.post(API_URL + "remove/" + productId, user, config)
+    return response.data
+}
+
+const showCart = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    const response = await axios.get(API_URL + "cart", config)
+    return response.data
+}
+
 const authService = {
     register,
     logout,
-    login
+    login,
+    addToCart,
+    removeCart,
+    showCart
 }
 
 export default authService

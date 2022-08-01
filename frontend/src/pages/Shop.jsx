@@ -30,7 +30,7 @@ export default function Shop() {
 
   return (
     <div>
-        <Header/>
+        <Header user={user}/>
         <div className="main">
           <h1 className="title">HY Phones</h1>
           <h3>Top Rated</h3>

@@ -16,6 +16,7 @@ a{
 .header{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-block: 10px;
   padding-inline: 15px;
   background: #FDFDFD;
@@ -41,6 +42,29 @@ a{
   background-color: #FDFDFD;
   color: #333333;
   cursor: pointer;
+}
+
+.cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qty-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  margin-right: 5px;
+}
+.qty{
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
 }
 
 .register{
@@ -166,7 +190,7 @@ a{
   grid-template-columns: 38vw 38vw;
   grid-template-rows: repeat(3, 16vw);
   row-gap: 5vh;
-  padding-bottom: 50px;
+  padding-bottom: 10vw;
 }
 
 .item{
@@ -226,7 +250,7 @@ a{
   width: 9.5vw;
   height: 3vw;
   background: #FF2C2C;
-  border-radius: 8px;
+  border-radius: 0.9vw;
   border: none;
   color: white;
   font-family: 'Poppins', sans-serif;
@@ -236,4 +260,97 @@ a{
 
 .buy-btn:active{
   background: #ff6969d4;
+}
+
+.cart-section{
+  border-bottom: black 1px solid;
+}
+
+.cart-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 11vw;
+  width: 45vw;
+  margin-left: 7.5vw;
+}
+
+.cart-content{
+  height: 9vw;
+  margin-right: 0.5vw;
+}
+
+.product-header{
+  width: 28vw;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2vw;
+  align-items: center;
+}
+
+.cart-image{
+  background-color: #EEEEEE;
+  height: 9vw;
+  width: 9vw;
+}
+
+.cart-h1{
+  font-size: 1.4vw;
+}
+
+.desc{
+  font-size: 1.4vw;
+  padding-left: 2vw;
+  padding-top: 0.8vw;
+}
+
+.desc-p{
+  font-size: 1vw;
+  padding-left: 2vw;
+  padding-top: 0.3vw;
+}
+
+.remove{
+  display: flex;
+  justify-content: right;
+  height: 9vw;
+  width: 5vw;
+}
+
+.remove button{
+  font-size: 1.5vw;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  background-color: #FF2C2C;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.9vw;
+  width: 1.9vw;
+  border-radius: 0.5vw;
+  border: none;
+  cursor: pointer;
+}
+
+.remove button:active{
+  background: #ff6969d4;
+}
+
+.total{
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.9vw;
+  padding-block: 2vw;
+}
+
+.pay{
+  text-align: center;
+  padding-bottom: 5vw;
+}
+
+.pay button{
+  width: 13vw;
+  font-size: 1.6vw;
 }
