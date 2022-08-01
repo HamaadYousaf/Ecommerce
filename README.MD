@@ -9,3 +9,4 @@ Full stack ecommerce website created using the mern stack.
 - REST API
 - Hashed passwords through bcrypt
 - User authentication through JWT
+- front end completed
