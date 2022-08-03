@@ -5,6 +5,8 @@ import CartItem from "../components/CartItem"
 import { showCart, reset } from "../features/auth/authSlice"
 import {removeCart} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
   const { cart, error, loading, message} = useSelector((state) => state.auth) 
@@ -13,6 +15,14 @@ export default function Cart() {
   const remove = async (id) => {
     await dispatch(removeCart(id))
     dispatch(showCart())
+  }
+
+  const handlePay = async () => {
+    for (let i = 0; i < cart.length; i++){
+      await dispatch(removeCart(cart[i]._id))
+    }
+    dispatch(showCart())
+    toast.success('Payment Successful')
   }
 
   useEffect(() => {
@@ -57,7 +67,7 @@ export default function Cart() {
         }
         {cart.length > 0 && 
         <div className="pay">
-          <button className="buy-btn">Pay now</button>
+          <button className="buy-btn" onClick={handlePay}>Pay now</button>
         </div>}
     </div>
   )

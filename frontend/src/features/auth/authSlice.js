@@ -79,7 +79,6 @@ export const showCart = createAsyncThunk(
         }
     }
 )
-console.log(user.cart.length)
 
 export const authSlice = createSlice({
     name: "auth",

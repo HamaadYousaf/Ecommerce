@@ -9,6 +9,29 @@
   font-weight: normal;
 }
 
+.toast{
+  top: 60px;
+  left: 78vw;
+  width: 20vw;
+  font-size: 1.2vw;
+}
+
+.Toastify__toast{
+  min-height: 5vw;
+}
+
+.Toastify__toast-body{
+   padding: 0.1vw;
+}
+
+.Toastify__toast-icon {
+  width: 1.5vw;
+}
+
+.Toastify__progress-bar{
+  height: 0.4vw;
+}
+
 a{
   color: #333333;
 }
@@ -176,12 +199,12 @@ a{
   font-weight: 500;
   color: #333333;
   padding-top: 5vh;
-  padding-bottom: 4vh;
+  padding-bottom: 2vw;
 }
 
 .main h3{
   font-size: 1.8vw;
-  padding-bottom: 4vh;
+  padding-bottom: 2vw;
 }
 
 .products{
@@ -209,6 +232,12 @@ a{
   margin-left: 1vw;
   align-items: center;
   text-align: center;
+}
+
+.image-container img{
+  width: auto;
+  height: 13.5vw;
+  object-fit: fill;
 }
 
 .content{
@@ -292,10 +321,22 @@ a{
   background-color: #EEEEEE;
   height: 9vw;
   width: 9vw;
+  border-radius: 2.5vw;
+  margin-left: 1vw;
+  align-items: center;
+  text-align: center;
+}
+
+.cart-image img{
+  width: auto;
+  height: 9vw;
+  object-fit: fill;
 }
 
 .cart-h1{
   font-size: 1.4vw;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 .desc{
@@ -353,4 +394,213 @@ a{
 .pay button{
   width: 13vw;
   font-size: 1.6vw;
+}
+
+@media (max-width: 600px) {
+  
+  .toast{
+    top: 60px;
+    left: 58vw;
+    width: 40vw;
+    font-size: 3.2vw;
+  }
+  
+  .Toastify__toast{
+    min-height: 10vw;
+    max-height: 10vw;
+    height: 10vw;
+  }
+  
+  .Toastify__toast-body{
+     padding: 0.1vw;
+  }
+  
+  .Toastify__toast-icon {
+    width: 3.5vw;
+  }
+  
+  .Toastify__progress-bar{
+    height: 0.7vw;
+  }
+
+  .register{
+    width: 90vw;
+    padding-left: 10vw;
+  }
+
+  .register p{
+    font-size: 4.5vw;
+    padding-top: 1.7vw;
+    padding-bottom: 10vw;
+  }
+
+  .register h6{
+    font-size: 4vw;
+    padding-top: 6vh;
+  }
+
+  .subHead{
+    font-size: 8vw;
+    padding-bottom: 6vw;
+  }
+
+  .form{
+    padding-top: 6vw;
+  }
+
+  .form div{
+    padding-block: 3vw;
+  }
+
+  .form input{
+    width: 70vw;
+    height: 8vw;
+    padding-left: 0.8vw;
+    font-size: 4vw;
+  }
+
+  .form button{
+    font-size: 6vw;
+    border-radius: 2.6vw;
+    padding-inline: 6.7vw;
+    padding-block: 0.8vw;
+  }
+
+  .title{
+    font-size: 10vw;
+    padding-bottom: 4vw;  
+  }
+
+  .main h3{
+    font-size: 3.6vw;
+    padding-bottom: 4vw;
+  }
+
+  .products{
+    grid-template-columns: 75vw;
+    grid-template-rows: repeat(6, 32vw);
+    justify-content: center;
+  }
+
+  .item{
+    border-radius: 5vw;
+  }
+
+  .image-container{
+    border-radius: 5vw;
+    height: 27vw;
+    width: 27vw;
+    margin-left: 2vw;
+  }
+
+  .image-container img{
+    height: 27vw;
+  }
+
+  .content{
+    width: 43vw;
+    height: 27vw;
+    margin-right: 1vw;
+  }
+  
+  .name {
+    font-size: 3.6vw;
+  }
+  
+  .price {
+    font-size: 2.4vw;
+  }
+
+  .content h2{
+    font-size: 2.8vw;
+    padding-top: 1.6vw;
+  }
+  .content p{
+    font-size: 2vw;
+    padding-top: 0.6vw;
+  }
+
+  .btns{
+    padding-right: 1.7vw;
+    padding-top: 3vw;
+  }
+  
+  .buy-btn{
+    font-size: 2.4vw;
+    width: 19vw;
+    height: 6vw;
+    border-radius: 1.8vw;
+  }
+
+  .cart-container{
+    height: 24vw;
+    width: 80vw;
+    margin-left: 0;
+    background-color: aliceblue;
+  }
+
+  .cart-content{
+    height: 20vw;
+    margin-right: 0.65vw;
+  }
+
+  .product-header{
+    width: 50vw;
+    padding-left: 2.6vw;
+  }
+
+  .cart-image{
+    height: 20vw;
+    width: 20vw;
+    border-radius: 5.25vw;
+    margin-left: 1.3vw;
+  }
+
+  .cart-image img{
+    height: 20vw;
+  }
+
+  .cart-h1{
+    font-size: 3vw;
+  }
+  
+  .desc{
+    font-size: 3vw;
+    padding-left: 2.6vw;
+    padding-top: 3vw;
+  }
+
+  .desc-p{
+    font-size: 2.5vw;
+    padding-left: 2.6vw;
+    padding-top: 1.3vw;
+  }
+  
+  .remove{
+    height: 20vw;
+    width: 7.5vw;
+  }
+
+  .remove button{
+    font-size: 3vw;
+    height: 4vw;
+    width: 4vw;
+    border-radius: 1vw;
+    align-items: center;
+  }
+
+  .total{
+    font-size: 5vw;
+    padding-block: 3vw;
+  }
+  
+  .pay{
+    padding-bottom: 10vw;
+  }
+  
+  .pay button{
+    width: 30vw;
+    height: 8vw;
+    font-size: 5vw;
+  }
 }

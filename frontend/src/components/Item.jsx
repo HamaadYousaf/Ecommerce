@@ -2,19 +2,22 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import {addToCart} from '../features/auth/authSlice'
 import {useSelector} from 'react-redux'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Item({product}) {
   const {user} = useSelector((state) => state.auth) 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  function handleChange(type) {
+  async function handleChange(type) {
     if(user){
       if(type === "now"){
         dispatch(addToCart(product._id))
         navigate('/cart')
       } else {
-        dispatch(addToCart(product._id))
+        await dispatch(addToCart(product._id))
+        toast.success('Added To Cart')
       }
     } else {
       navigate('/login')
@@ -24,7 +27,7 @@ function Item({product}) {
   return (
     <div className="item">
       <div className="image-container">
-        <img alt='product' src={product.image} style={{width: "auto", height: "13.5vw", objectFit: "fill"}}></img>
+        <img alt='product' src={product.image}></img>
       </div>
       <div className="content">
           <h1 className="name">{product.name}</h1>
