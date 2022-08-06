@@ -13,7 +13,7 @@ function Item({product}) {
   async function handleChange(type) {
     if(user){
       if(type === "now"){
-        dispatch(addToCart(product._id))
+        await dispatch(addToCart(product._id))
         navigate('/cart')
       } else {
         await dispatch(addToCart(product._id))
