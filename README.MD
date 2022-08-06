@@ -6,6 +6,7 @@ Full stack ecommerce website created using the mern stack.
 
 - React Redux ToolKit
 - React Toastify
+- Fully mobile responsive
 
 #### BackEnd
 
@@ -13,8 +14,8 @@ Full stack ecommerce website created using the mern stack.
 - MongoDB
 - Mongoose
 - Axios
-- Bcrypt
-- JWT
+- Hashed passwords through bcrypy
+- User authentication through JWT
 
 ### Test Account
 
