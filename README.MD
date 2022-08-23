@@ -1,6 +1,6 @@
 # Ecommerce
 
-Full stack ecommerce website created using the mern stack.
+Full stack ecommerce website created using the MERN stack.
 
 #### FrontEnd
 
@@ -14,7 +14,7 @@ Full stack ecommerce website created using the mern stack.
 - MongoDB
 - Mongoose
 - Axios
-- Hashed passwords through bcrypy
+- Hashed passwords through Bcrypy
 - User authentication through JWT
 
 ### Test Account
