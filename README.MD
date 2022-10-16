@@ -2,6 +2,13 @@
 
 Full stack ecommerce website created using the MERN stack.
 
+#### Functionalities
+- Register/Login user
+- Saves logged-in users to local storage so you don't need to log in every time
+- Add to cart/Buy now functionalities
+- Add/Delete/Update products
+- Error/Sucess pop up messages for adding to cart, login, register
+
 #### FrontEnd
 
 - React Redux ToolKit
